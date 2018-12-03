@@ -37,7 +37,7 @@
             this.getHolidayDestination(this.slug);
         },
 
-        beforeRouteUpdate (to, from, next) {
+        beforeRouteUpdate(to, from, next) {
             this.getHolidayDestination(to.params.slug)
 
             next();
@@ -45,11 +45,19 @@
 
         methods: {
             getHolidayDestination(slug) {
-                axios.get(`/api/holiday-destinations/${slug}`, {}).then((response) => {
-                    this.destination = { ...this.destination, ...response.data.data }
-                }).catch((error) => {
-                    console.log(error, 'ERROR');
-                });
+                axios
+                    .get(`/api/holiday-destinations/${slug}`)
+                    .then((response) => {
+                        this.destination = { ...this.destination, ...response.data.data } //data on component
+
+                        this.$store.commit({
+                            type: 'updateDestinations',
+                            destination: response.data.data
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error, 'ERROR');
+                    });
             }
         }
     }
