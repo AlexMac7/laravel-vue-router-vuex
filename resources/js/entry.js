@@ -7,9 +7,11 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 
+Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.use(Vuex);
 

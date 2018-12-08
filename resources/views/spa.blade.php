@@ -7,13 +7,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Vue SPA Test</title>
+
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
+
+    <script>
+        window.test = 'test';
+    </script>
     {{--todo, add vars to window--}}
 </head>
 <body>
 <div id="entry">
     <app :holiday-destinations="{{$holiday_destinations}}"></app>
 </div>
-
 <script src="{{ mix('js/entry.js') }}"></script>
 </body>
 </html>

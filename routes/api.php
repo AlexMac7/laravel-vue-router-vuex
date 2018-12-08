@@ -14,9 +14,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('api')->get('holiday-destinations/{holidayDestination}', function (Request $request, $slug) {
+Route::middleware('api')->get('/holiday-destinations/{holidayDestination}', function (Request $request, $slug) {
     $destination = HolidayDestination::where('slug', $slug)->first();
 
     return response()->json(['data' => $destination]);
+});
+
+Route::middleware('api')->post('/holiday-destinations', function (Request $request) {
+    $validatedData = $request->validate([
+        'name' => ['required', 'string', 'min:2', 'max:255'],
+        'location' => ['required', 'string', 'min:2', 'max:255'],
+        'description' => ['required', 'string', 'min:2'],
+        'price' => ['required', 'numeric', 'min:1'],
+    ]);
+
+    $destination = HolidayDestination::create([
+        'name' => $validatedData['name'],
+        'slug' => str_replace(' ', '-', $validatedData['name']),
+        'location' => $validatedData['location'],
+        'description' => $validatedData['description'],
+        'price' => $validatedData['price'],
+    ]);
+
+    return response()->json(['data' => $destination], 201);
 });
 

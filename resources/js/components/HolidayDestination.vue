@@ -1,13 +1,16 @@
 <template>
-    <div class="container">
-        <h1>Destination: {{ destination.name }}</h1>
-        <div class="col-md-8">
-            <div class="row">
-                <p>Location: {{ destination.location }}</p>
-                <p>Description: {{ destination.description }}</p>
-                <p>Price (cents): {{ destination.price }}</p>
-            </div>
-        </div>
+    <div>
+        <b-card bg-variant="dark" text-variant="white" :title="destination.name">
+            <p class="card-text">
+                Location: {{ destination.location }}
+            </p>
+            <p class="card-text">
+                Description: {{ destination.description }}
+            </p>
+            <p class="card-text">
+                Price (cents): {{ destination.price }}
+            </p>
+        </b-card>
     </div>
 </template>
 <script>
