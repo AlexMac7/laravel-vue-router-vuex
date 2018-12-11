@@ -18,6 +18,7 @@ Vue.use(Vuex);
 import App from './views/App';
 import HolidayDestination from './components/HolidayDestination';
 import Home from './components/Home';
+import StepOne from './views/form-step/StepOne';
 
 const store = new Vuex.Store({
     state: {
@@ -39,6 +40,11 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
+        },
+        {
+            path: '/form',
+            name: 'stepOne',
+            component: StepOne,
         },
         {
             path: '/holiday-destinations/:slug',

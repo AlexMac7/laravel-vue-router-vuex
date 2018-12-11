@@ -25,7 +25,7 @@ Route::middleware('api')->post('/holiday-destinations', function (Request $reque
         'name' => ['required', 'string', 'min:2', 'max:255'],
         'location' => ['required', 'string', 'min:2', 'max:255'],
         'description' => ['required', 'string', 'min:2'],
-        'price' => ['required', 'numeric', 'min:1'],
+        'price' => ['required', 'numeric', 'min:0'],
     ]);
 
     $destination = HolidayDestination::create([

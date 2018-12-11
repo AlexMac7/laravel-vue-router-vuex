@@ -1,9 +1,12 @@
 <template>
     <div>
-        <div>
-            <b-nav>
+        <nav>
+            <b-nav class="my-3">
                 <b-nav-item active>
                     <router-link :to="{ name: 'home' }">Home</router-link>
+                </b-nav-item>
+                <b-nav-item>
+                    <router-link :to="{ name: 'stepOne' }">Multi Page Form w/ Progress</router-link>
                 </b-nav-item>
                 <b-nav-item v-for="destination in holidayDestinations" :key="destination.id">
                     <router-link v-bind="destination" :to="{ name: 'holidayDestinations', params: { slug: destination.slug }}">
@@ -11,7 +14,7 @@
                     </router-link>
                 </b-nav-item>
             </b-nav>
-        </div>
+        </nav>
 
         <b-container fluid>
             <router-view></router-view>
