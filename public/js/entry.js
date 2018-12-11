@@ -20281,7 +20281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_HolidayDestination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_HolidayDestination__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Home__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Home__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_form_step_StepOne__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_form_step_StepOne__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_form_step_StepOne___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__views_form_step_StepOne__);
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -68707,27 +68707,15 @@ if (false) {
 }
 
 /***/ }),
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(24)
 /* script */
-var __vue_script__ = __webpack_require__(235)
+var __vue_script__ = __webpack_require__(228)
 /* template */
-var __vue_template__ = __webpack_require__(236)
+var __vue_template__ = __webpack_require__(229)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -68766,31 +68754,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 235 */
+/* 228 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -68971,7 +68939,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 236 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -69014,136 +68982,67 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-row",
-            { staticClass: "m-5" },
+            { staticClass: "m-5 text-center" },
             [
-              _c(
-                "b-col",
-                [
-                  _c(
-                    "b-card-group",
-                    { attrs: { deck: "" } },
-                    [
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickProduct }
-                            },
-                            [
-                              _vm._v(
-                                "First\n                            Product\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickProduct }
-                            },
-                            [
-                              _vm._v(
-                                "Second\n                            Product\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickProduct }
-                            },
-                            [
-                              _vm._v(
-                                "Third\n                            Product\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickProduct }
-                            },
-                            [
-                              _vm._v(
-                                "Fourth\n                            Product\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [_vm._v("Fourth\n                Product\n                ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [
+                    _vm._v(
+                      "Fourth\n                    Product\n                "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [
+                    _vm._v(
+                      "Fourth\n                    Product\n                "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [
+                    _vm._v(
+                      "Fourth\n                    Product\n                "
+                    )
+                  ]
+                )
+              ])
             ],
             1
           ),
@@ -69442,6 +69341,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-af6569de", module.exports)
   }
 }
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -9,46 +9,26 @@
                     <h2 class="text-center my-4">What Type Of Product Do You Want?</h2>
                 </b-col>
             </b-row>
-            <b-row class="m-5">
-                <b-col>
-                    <b-card-group deck>
-                        <b-card img-src="https://picsum.photos/300/300/?image=41"
-                                img-alt="Img"
-                                img-top
-                                fluid
-                                class="text-center">
-                            <button type="button" class="btn btn-outline-primary btn-lg" @click="onClickProduct">First
-                                Product
-                            </button>
-                        </b-card>
-                        <b-card img-src="https://picsum.photos/300/300/?image=41"
-                                img-alt="Img"
-                                img-top
-                                fluid
-                                class="text-center">
-                            <button type="button" class="btn btn-outline-primary btn-lg" @click="onClickProduct">Second
-                                Product
-                            </button>
-                        </b-card>
-                        <b-card img-src="https://picsum.photos/300/300/?image=41"
-                                img-alt="Img"
-                                img-top
-                                fluid
-                                class="text-center">
-                            <button type="button" class="btn btn-outline-primary btn-lg" @click="onClickProduct">Third
-                                Product
-                            </button>
-                        </b-card>
-                        <b-card img-src="https://picsum.photos/300/300/?image=41"
-                                img-alt="Img"
-                                img-top
-                                fluid
-                                class="text-center">
-                            <button type="button" class="btn btn-outline-primary btn-lg" @click="onClickProduct">Fourth
-                                Product
-                            </button>
-                        </b-card>
-                    </b-card-group>
+            <b-row class="m-5 text-center">
+                <b-col lg="6" class="my-2">
+                    <button type="button" class="btn btn-outline-primary btn-lg btn-block" @click="onClickProduct">Fourth
+                    Product
+                    </button>
+                </b-col>
+                <b-col lg="6" class="my-2">
+                    <button type="button" class="btn btn-outline-primary btn-lg btn-block" @click="onClickProduct">Fourth
+                        Product
+                    </button>
+                </b-col>
+                <b-col lg="6" class="my-2">
+                    <button type="button" class="btn btn-outline-primary btn-lg btn-block" @click="onClickProduct">Fourth
+                        Product
+                    </button>
+                </b-col>
+                <b-col lg="6" class="my-2">
+                    <button type="button" class="btn btn-outline-primary btn-lg btn-block" @click="onClickProduct">Fourth
+                        Product
+                    </button>
                 </b-col>
             </b-row>
             <b-row class="mx-5">
