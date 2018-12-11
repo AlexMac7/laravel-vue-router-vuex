@@ -68885,6 +68885,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -68897,12 +68910,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 product: '', //TODO: ensure this is updated even if it isn't being used in the template... wtf Vue
                 strain: '', //TODO: ensure this is updated even if it isn't being used in the template... wtf Vue
                 lastQuestion: ''
+            },
+            form: {
+                email: '',
+                name: '',
+                food: null,
+                checked: []
             }
         };
     },
 
 
     methods: {
+        onSubmit: function onSubmit(evt) {
+            evt.preventDefault();
+            alert(JSON.stringify(this.form));
+        },
+        onReset: function onReset(evt) {
+            var _this = this;
+
+            evt.preventDefault();
+            /* Reset our form values */
+            this.form.email = '';
+            this.form.name = '';
+            this.form.food = null;
+            this.form.checked = [];
+            /* Trick to reset/clear native browser form validation state */
+            this.show = false;
+            this.$nextTick(function () {
+                _this.show = true;
+            });
+        },
+
+        //TODO: ABOVE
         onClickStepOne: function onClickStepOne(event) {
             event.preventDefault();
 
@@ -68956,304 +68996,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-container",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.step === 1,
-              expression: "step === 1"
-            }
-          ]
-        },
-        [
-          _c(
-            "b-row",
-            { staticClass: "mx-5" },
-            [
-              _c("b-col", [
-                _c("h2", { staticClass: "text-center my-4" }, [
-                  _vm._v("What Type Of Product Do You Want?")
-                ])
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            { staticClass: "m-5 text-center" },
-            [
-              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary btn-lg btn-block",
-                    attrs: { type: "button" },
-                    on: { click: _vm.onClickProduct }
-                  },
-                  [_vm._v("Fourth\n                Product\n                ")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary btn-lg btn-block",
-                    attrs: { type: "button" },
-                    on: { click: _vm.onClickProduct }
-                  },
-                  [
-                    _vm._v(
-                      "Fourth\n                    Product\n                "
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary btn-lg btn-block",
-                    attrs: { type: "button" },
-                    on: { click: _vm.onClickProduct }
-                  },
-                  [
-                    _vm._v(
-                      "Fourth\n                    Product\n                "
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary btn-lg btn-block",
-                    attrs: { type: "button" },
-                    on: { click: _vm.onClickProduct }
-                  },
-                  [
-                    _vm._v(
-                      "Fourth\n                    Product\n                "
-                    )
-                  ]
-                )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            { staticClass: "mx-5" },
-            [
-              _c("b-col", { staticClass: "text-center" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary btn-lg w-50",
-                    attrs: { type: "button", disabled: _vm.isDisabled },
-                    on: { click: _vm.onClickStepOne }
-                  },
-                  [_vm._v("\n                    Continue\n                ")]
-                )
-              ])
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-container",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.step === 2,
-              expression: "step === 2"
-            }
-          ]
-        },
-        [
-          _c(
-            "b-row",
-            { staticClass: "mx-5" },
-            [
-              _c("b-col", [
-                _c("h2", { staticClass: "text-center my-4" }, [
-                  _vm._v("What Type Of Strain Are You Looking For?")
-                ])
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            { staticClass: "m-5" },
-            [
-              _c(
-                "b-col",
-                [
-                  _c(
-                    "b-card-group",
-                    { attrs: { deck: "" } },
-                    [
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickStrain }
-                            },
-                            [_vm._v("Indica\n                        ")]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickStrain }
-                            },
-                            [_vm._v("Sativa\n                        ")]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickStrain }
-                            },
-                            [_vm._v("Hybrid\n                        ")]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-card",
-                        {
-                          staticClass: "text-center",
-                          attrs: {
-                            "img-src":
-                              "https://picsum.photos/300/300/?image=41",
-                            "img-alt": "Img",
-                            "img-top": "",
-                            fluid: ""
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-outline-primary btn-lg",
-                              attrs: { type: "button" },
-                              on: { click: _vm.onClickStrain }
-                            },
-                            [
-                              _vm._v(
-                                "Not\n                            Sure\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            { staticClass: "mx-5" },
-            [
-              _c("b-col", { staticClass: "text-center" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary btn-lg w-50",
-                    attrs: { type: "button", disabled: _vm.isDisabled },
-                    on: { click: _vm.onClickStepTwo }
-                  },
-                  [_vm._v("\n                    Continue\n                ")]
-                )
-              ])
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-container",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.step === 3,
-              expression: "step === 3"
-            }
-          ],
-          staticClass: "bv-example-row"
-        },
+        { staticClass: "bv-example-row" },
         [
           _c(
             "b-row",
@@ -69269,59 +69012,97 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "b-container",
-            { staticClass: "bv-example-row" },
+            "b-row",
+            { staticClass: "justify-content-md-center mx-5" },
             [
               _c(
-                "b-row",
-                { staticClass: "justify-content-md-center mx-5" },
+                "b-form",
+                {
+                  staticClass: "w-75",
+                  on: { submit: _vm.onSubmit, reset: _vm.onReset }
+                },
                 [
                   _c(
-                    "b-col",
-                    { attrs: { cols: "12", md: "8" } },
+                    "b-form-group",
+                    {
+                      attrs: {
+                        id: "exampleInputGroup1",
+                        label: "Email address:",
+                        "label-for": "exampleInput1",
+                        description:
+                          "We'll never share your email with anyone else."
+                      }
+                    },
                     [
                       _c("b-form-input", {
                         attrs: {
-                          type: "text",
-                          placeholder: "Enter your name",
-                          size: "lg"
+                          id: "exampleInput1",
+                          type: "email",
+                          required: "",
+                          placeholder: "Enter email"
                         },
                         model: {
-                          value: _vm.selections.lastQuestion,
+                          value: _vm.form.email,
                           callback: function($$v) {
-                            _vm.$set(_vm.selections, "lastQuestion", $$v)
+                            _vm.$set(_vm.form, "email", $$v)
                           },
-                          expression: "selections.lastQuestion"
+                          expression: "form.email"
                         }
                       })
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    {
+                      attrs: {
+                        id: "exampleInputGroup2",
+                        label: "Your Name:",
+                        "label-for": "exampleInput2"
+                      }
+                    },
+                    [
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "exampleInput2",
+                          type: "text",
+                          required: "",
+                          placeholder: "Enter name"
+                        },
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("b-col", { staticClass: "text-center my-5" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-primary btn-lg w-50",
+                        attrs: {
+                          type: "button",
+                          disabled: _vm.selections.lastQuestion.length < 3
+                        },
+                        on: { click: _vm.onClickSubmit }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Submit\n                            "
+                        )
+                      ]
+                    )
+                  ])
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            { staticClass: "m-5" },
-            [
-              _c("b-col", { staticClass: "text-center" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary btn-lg w-50",
-                    attrs: {
-                      type: "button",
-                      disabled: _vm.selections.lastQuestion.length < 3
-                    },
-                    on: { click: _vm.onClickSubmit }
-                  },
-                  [_vm._v("\n                    Submit\n                ")]
-                )
-              ])
             ],
             1
           )
