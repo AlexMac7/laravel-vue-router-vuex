@@ -68896,8 +68896,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -68913,36 +68911,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             form: {
                 email: '',
-                name: '',
-                food: null,
-                checked: []
+                name: ''
             }
         };
     },
 
 
     methods: {
-        onSubmit: function onSubmit(evt) {
-            evt.preventDefault();
-            alert(JSON.stringify(this.form));
-        },
-        onReset: function onReset(evt) {
-            var _this = this;
-
-            evt.preventDefault();
-            /* Reset our form values */
-            this.form.email = '';
-            this.form.name = '';
-            this.form.food = null;
-            this.form.checked = [];
-            /* Trick to reset/clear native browser form validation state */
-            this.show = false;
-            this.$nextTick(function () {
-                _this.show = true;
-            });
-        },
-
-        //TODO: ABOVE
         onClickStepOne: function onClickStepOne(event) {
             event.preventDefault();
 
@@ -68957,11 +68932,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.step = 3;
             this.isDisabled = true;
         },
-        onClickSubmit: function onClickSubmit(event) {
+        onSubmit: function onSubmit(event) {
             event.preventDefault();
+            alert(JSON.stringify(this.form));
+        },
+        onReset: function onReset(event) {
+            var _this = this;
 
-            this.value = 100;
-            this.isDisabled = true;
+            event.preventDefault();
+            /* Reset our form values */
+            this.form.email = '';
+            this.form.name = '';
+            /* Trick to reset/clear native browser form validation state */
+            this.show = false;
+            this.$nextTick(function () {
+                _this.show = true;
+            });
         },
         onClickProduct: function onClickProduct(event) {
             event.preventDefault();
@@ -68994,121 +68980,141 @@ var render = function() {
         attrs: { height: "0.25rem", value: _vm.value, max: _vm.max }
       }),
       _vm._v(" "),
-      _c(
-        "b-container",
-        { staticClass: "bv-example-row" },
-        [
-          _c(
-            "b-row",
-            { staticClass: "mx-5" },
-            [
-              _c("b-col", [
-                _c("h2", { staticClass: "text-center my-4" }, [
-                  _vm._v("Last Question")
-                ])
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-row",
-            { staticClass: "justify-content-md-center mx-5" },
-            [
+      _c("b-container", { staticClass: "bv-example-row" }, [
+        _c("div", { staticClass: "row justify-content-md-center" }, [
+          _c("div", { staticClass: "col-lg-10" }, [
+            _c("div", { staticClass: "card card-default card-auth" }, [
+              _c("div", { staticClass: "card-header col-md-12 text-center" }, [
+                _c("h5", [_vm._v("Last Question!")])
+              ]),
+              _vm._v(" "),
               _c(
-                "b-form",
-                {
-                  staticClass: "w-75",
-                  on: { submit: _vm.onSubmit, reset: _vm.onReset }
-                },
+                "div",
+                { staticClass: "card-body-holder p-4" },
                 [
                   _c(
-                    "b-form-group",
-                    {
-                      attrs: {
-                        id: "exampleInputGroup1",
-                        label: "Email address:",
-                        "label-for": "exampleInput1",
-                        description:
-                          "We'll never share your email with anyone else."
-                      }
-                    },
+                    "b-form",
+                    { on: { submit: _vm.onSubmit, reset: _vm.onReset } },
                     [
-                      _c("b-form-input", {
-                        attrs: {
-                          id: "exampleInput1",
-                          type: "email",
-                          required: "",
-                          placeholder: "Enter email"
-                        },
-                        model: {
-                          value: _vm.form.email,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "email", $$v)
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "col-md-3 col-form-label text-md-right",
+                            attrs: { for: "email" }
                           },
-                          expression: "form.email"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    {
-                      attrs: {
-                        id: "exampleInputGroup2",
-                        label: "Your Name:",
-                        "label-for": "exampleInput2"
-                      }
-                    },
-                    [
-                      _c("b-form-input", {
-                        attrs: {
-                          id: "exampleInput2",
-                          type: "text",
-                          required: "",
-                          placeholder: "Enter name"
-                        },
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
+                          [_vm._v("Email")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-7" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.email,
+                                expression: "form.email"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "email",
+                              id: "email",
+                              name: "email",
+                              placeholder: "Email",
+                              required: ""
+                            },
+                            domProps: { value: _vm.form.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "email", $event.target.value)
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "col-md-3 col-form-label text-md-right",
+                            attrs: { for: "name" }
                           },
-                          expression: "form.name"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("b-col", { staticClass: "text-center my-5" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-outline-primary btn-lg w-50",
-                        attrs: {
-                          type: "button",
-                          disabled: _vm.selections.lastQuestion.length < 3
-                        },
-                        on: { click: _vm.onClickSubmit }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                Submit\n                            "
+                          [_vm._v("Name")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-7" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.name,
+                                expression: "form.name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "name",
+                              type: "text",
+                              name: "name",
+                              placeholder: "Name",
+                              required: ""
+                            },
+                            domProps: { value: _vm.form.name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "name", $event.target.value)
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-8 offset-md-3" },
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: {
+                                  type: "submit",
+                                  variant: "primary",
+                                  disabled: _vm.form.name.length < 3
+                                }
+                              },
+                              [_vm._v("Submit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-button",
+                              { attrs: { type: "reset", variant: "danger" } },
+                              [_vm._v("Reset")]
+                            )
+                          ],
+                          1
                         )
-                      ]
-                    )
-                  ])
+                      ])
+                    ]
+                  )
                 ],
                 1
               )
-            ],
-            1
-          )
-        ],
-        1
-      )
+            ])
+          ])
+        ])
+      ])
     ],
     1
   )

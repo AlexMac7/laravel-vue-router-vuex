@@ -98,42 +98,40 @@
         <!--Step Two-->
         <!--<b-container class="bv-example-row" v-show="step === 3">-->
         <b-container class="bv-example-row">
-            <b-row class="mx-5">
-                <b-col>
-                    <h2 class="text-center my-4">Last Question</h2>
-                </b-col>
-            </b-row>
-                <b-row class="justify-content-md-center mx-5">
-                    <!--TODO: Form isn't aligned properly on mobile, has to do with the width 75-->
-                    <b-form @submit="onSubmit" @reset="onReset" class="w-75">
-                        <b-form-group id="exampleInputGroup1"
-                                      label="Email address:"
-                                      label-for="exampleInput1"
-                                      description="We'll never share your email with anyone else.">
-                            <b-form-input id="exampleInput1"
-                                          type="email"
-                                          v-model="form.email"
-                                          required
-                                          placeholder="Enter email">
-                            </b-form-input>
-                        </b-form-group>
-                        <b-form-group id="exampleInputGroup2"
-                                      label="Your Name:"
-                                      label-for="exampleInput2">
-                            <b-form-input id="exampleInput2"
-                                          type="text"
-                                          v-model="form.name"
-                                          required
-                                          placeholder="Enter name">
-                            </b-form-input>
-                        </b-form-group>
-                            <b-col class="text-center my-5">
-                                <button type="button" class="btn btn-outline-primary btn-lg w-50" :disabled="selections.lastQuestion.length < 3" @click="onClickSubmit">
-                                    Submit
-                                </button>
-                            </b-col>
-                    </b-form>
-                </b-row>
+            <div class="row justify-content-md-center">
+                <div class="col-lg-10">
+                    <div class="card card-default card-auth">
+                        <div class="card-header col-md-12 text-center">
+                            <h5>Last Question!</h5>
+                        </div>
+
+                        <div class="card-body-holder p-4">
+                            <b-form @submit="onSubmit" @reset="onReset">
+                                <div class="form-group row">
+                                    <label for="email" class="col-md-3 col-form-label text-md-right">Email</label>
+                                    <div class="col-md-7">
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required v-model="form.email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-3 col-form-label text-md-right">Name</label>
+                                    <div class="col-md-7">
+                                        <input id="name" type="text" name="name" class="form-control" placeholder="Name" required v-model="form.name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-8 offset-md-3">
+                                        <b-button type="submit" variant="primary" :disabled="form.name.length < 3">Submit</b-button>
+                                        <b-button type="reset" variant="danger">Reset</b-button>
+                                    </div>
+                                </div>
+                            </b-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </b-container>
     </div>
 </template>
@@ -153,29 +151,11 @@
                 form: {
                     email: '',
                     name: '',
-                    food: null,
-                    checked: []
                 },
             }
         },
 
         methods: {
-            onSubmit (evt) {
-                evt.preventDefault();
-                alert(JSON.stringify(this.form));
-            },
-            onReset (evt) {
-                evt.preventDefault();
-                /* Reset our form values */
-                this.form.email = '';
-                this.form.name = '';
-                this.form.food = null;
-                this.form.checked = [];
-                /* Trick to reset/clear native browser form validation state */
-                this.show = false;
-                this.$nextTick(() => { this.show = true });
-            },
-            //TODO: ABOVE
             onClickStepOne(event) {
                 event.preventDefault();
 
@@ -192,11 +172,21 @@
                 this.isDisabled = true;
             },
 
-            onClickSubmit(event) {
+            onSubmit(event) {
                 event.preventDefault();
+                alert(JSON.stringify(this.form));
+            },
 
-                this.value = 100;
-                this.isDisabled = true;
+            onReset(event) {
+                event.preventDefault();
+                /* Reset our form values */
+                this.form.email = '';
+                this.form.name = '';
+                /* Trick to reset/clear native browser form validation state */
+                this.show = false;
+                this.$nextTick(() => {
+                    this.show = true
+                });
             },
 
             onClickProduct(event) {
