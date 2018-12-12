@@ -68890,12 +68890,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -68905,13 +68899,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             value: 0,
             max: 100,
             selections: {
-                product: '', //TODO: ensure this is updated even if it isn't being used in the template... wtf Vue
-                strain: '', //TODO: ensure this is updated even if it isn't being used in the template... wtf Vue
-                lastQuestion: ''
-            },
-            form: {
-                email: '',
-                name: ''
+                product: '',
+                strain: '',
+                name: '',
+                email: ''
             }
         };
     },
@@ -68933,26 +68924,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isDisabled = true;
         },
         onSubmit: function onSubmit(event) {
-            event.preventDefault();
-            alert(JSON.stringify(this.form));
-        },
-        onReset: function onReset(event) {
             var _this = this;
 
             event.preventDefault();
+
+            console.log(this.selections, 'before');
+            axios.post('/api/leads', {
+                product: this.selections.product,
+                strain: this.selections.strain,
+                name: this.selections.name,
+                email: this.selections.email
+            }).then(function (response) {
+                console.log(_this.selections, 'after');
+                // this.$store.commit({
+                //     type: 'updateDestinations',
+                //     destination: response.data.data
+                // });
+
+                _this.$router.push({ name: "home" });
+            }).catch(function (error) {
+                alert(error);
+            });
+        },
+        onReset: function onReset(event) {
+            var _this2 = this;
+
+            event.preventDefault();
             /* Reset our form values */
-            this.form.email = '';
-            this.form.name = '';
+            this.selections.product = '';
+            this.selections.strain = '';
+            this.selections.name = '';
+            this.selections.email = '';
             /* Trick to reset/clear native browser form validation state */
             this.show = false;
             this.$nextTick(function () {
-                _this.show = true;
+                _this2.show = true;
             });
         },
         onClickProduct: function onClickProduct(event) {
             event.preventDefault();
 
             this.selections.product = event.target.innerHTML;
+            console.log(this.selections.product, event.target.innerHTML);
             this.isDisabled = false;
         },
         onClickStrain: function onClickStrain(event) {
@@ -68980,141 +68993,449 @@ var render = function() {
         attrs: { height: "0.25rem", value: _vm.value, max: _vm.max }
       }),
       _vm._v(" "),
-      _c("b-container", { staticClass: "bv-example-row" }, [
-        _c("div", { staticClass: "row justify-content-md-center" }, [
-          _c("div", { staticClass: "col-lg-10" }, [
-            _c("div", { staticClass: "card card-default card-auth" }, [
-              _c("div", { staticClass: "card-header col-md-12 text-center" }, [
-                _c("h5", [_vm._v("Last Question!")])
+      _c(
+        "b-container",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.step === 1,
+              expression: "step === 1"
+            }
+          ]
+        },
+        [
+          _c(
+            "b-row",
+            { staticClass: "mx-5" },
+            [
+              _c("b-col", [
+                _c("h2", { staticClass: "text-center my-4" }, [
+                  _vm._v("What Type Of Product Do You Want?")
+                ])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-row",
+            { staticClass: "m-5 text-center" },
+            [
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [_vm._v("First Product")]
+                )
               ]),
               _vm._v(" "),
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [_vm._v("Second Product")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [_vm._v("Third Product")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("b-col", { staticClass: "my-2", attrs: { lg: "6" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickProduct }
+                  },
+                  [_vm._v("Fourth Product")]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-row",
+            { staticClass: "mx-5" },
+            [
+              _c("b-col", { staticClass: "text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg w-50",
+                    attrs: { type: "button", disabled: _vm.isDisabled },
+                    on: { click: _vm.onClickStepOne }
+                  },
+                  [_vm._v("Continue\n                ")]
+                )
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-container",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.step === 2,
+              expression: "step === 2"
+            }
+          ]
+        },
+        [
+          _c(
+            "b-row",
+            { staticClass: "mx-5" },
+            [
+              _c("b-col", [
+                _c("h2", { staticClass: "text-center my-4" }, [
+                  _vm._v("What Type Of Strain Are You Looking For?")
+                ])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-row",
+            { staticClass: "m-5" },
+            [
               _c(
-                "div",
-                { staticClass: "card-body-holder p-4" },
+                "b-col",
                 [
                   _c(
-                    "b-form",
-                    { on: { submit: _vm.onSubmit, reset: _vm.onReset } },
+                    "b-card-group",
+                    { attrs: { deck: "" } },
                     [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-md-3 col-form-label text-md-right",
-                            attrs: { for: "email" }
-                          },
-                          [_vm._v("Email")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-7" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.email,
-                                expression: "form.email"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "email",
-                              id: "email",
-                              name: "email",
-                              placeholder: "Email",
-                              required: ""
+                      _c(
+                        "b-card",
+                        {
+                          staticClass: "text-center",
+                          attrs: {
+                            "img-src":
+                              "https://picsum.photos/300/300/?image=41",
+                            "img-alt": "Img",
+                            "img-top": "",
+                            fluid: ""
+                          }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-primary btn-lg",
+                              attrs: { type: "button" },
+                              on: { click: _vm.onClickStrain }
                             },
-                            domProps: { value: _vm.form.email },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(_vm.form, "email", $event.target.value)
-                              }
-                            }
-                          })
-                        ])
-                      ]),
+                            [_vm._v("Indica\n                        ")]
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-md-3 col-form-label text-md-right",
-                            attrs: { for: "name" }
-                          },
-                          [_vm._v("Name")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-7" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.name,
-                                expression: "form.name"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              id: "name",
-                              type: "text",
-                              name: "name",
-                              placeholder: "Name",
-                              required: ""
+                      _c(
+                        "b-card",
+                        {
+                          staticClass: "text-center",
+                          attrs: {
+                            "img-src":
+                              "https://picsum.photos/300/300/?image=41",
+                            "img-alt": "Img",
+                            "img-top": "",
+                            fluid: ""
+                          }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-primary btn-lg",
+                              attrs: { type: "button" },
+                              on: { click: _vm.onClickStrain }
                             },
-                            domProps: { value: _vm.form.name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(_vm.form, "name", $event.target.value)
-                              }
-                            }
-                          })
-                        ])
-                      ]),
+                            [_vm._v("Sativa\n                        ")]
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-8 offset-md-3" },
-                          [
-                            _c(
-                              "b-button",
-                              {
-                                attrs: {
-                                  type: "submit",
-                                  variant: "primary",
-                                  disabled: _vm.form.name.length < 3
-                                }
-                              },
-                              [_vm._v("Submit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-button",
-                              { attrs: { type: "reset", variant: "danger" } },
-                              [_vm._v("Reset")]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ]
+                      _c(
+                        "b-card",
+                        {
+                          staticClass: "text-center",
+                          attrs: {
+                            "img-src":
+                              "https://picsum.photos/300/300/?image=41",
+                            "img-alt": "Img",
+                            "img-top": "",
+                            fluid: ""
+                          }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-primary btn-lg",
+                              attrs: { type: "button" },
+                              on: { click: _vm.onClickStrain }
+                            },
+                            [_vm._v("Hybrid\n                        ")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-card",
+                        {
+                          staticClass: "text-center",
+                          attrs: {
+                            "img-src":
+                              "https://picsum.photos/300/300/?image=41",
+                            "img-alt": "Img",
+                            "img-top": "",
+                            fluid: ""
+                          }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-primary btn-lg",
+                              attrs: { type: "button" },
+                              on: { click: _vm.onClickStrain }
+                            },
+                            [
+                              _vm._v(
+                                "Not\n                            Sure\n                        "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
               )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-row",
+            { staticClass: "mx-5" },
+            [
+              _c("b-col", { staticClass: "text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary btn-lg w-50",
+                    attrs: { type: "button", disabled: _vm.isDisabled },
+                    on: { click: _vm.onClickStepTwo }
+                  },
+                  [_vm._v("\n                    Continue\n                ")]
+                )
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-container",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.step === 3,
+              expression: "step === 3"
+            }
+          ],
+          staticClass: "bv-example-row"
+        },
+        [
+          _c("b-container", { staticClass: "bv-example-row" }, [
+            _c("div", { staticClass: "row justify-content-md-center" }, [
+              _c("div", { staticClass: "col-lg-10" }, [
+                _c("div", { staticClass: "card card-default card-auth" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-header col-md-12 text-center" },
+                    [_c("h5", [_vm._v("Last Question!")])]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card-body-holder p-4" },
+                    [
+                      _c(
+                        "b-form",
+                        { on: { submit: _vm.onSubmit, reset: _vm.onReset } },
+                        [
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "col-md-3 col-form-label text-md-right",
+                                attrs: { for: "email" }
+                              },
+                              [_vm._v("Email")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-7" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.selections.email,
+                                    expression: "selections.email"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "email",
+                                  id: "email",
+                                  name: "email",
+                                  placeholder: "Email",
+                                  required: ""
+                                },
+                                domProps: { value: _vm.selections.email },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.selections,
+                                      "email",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "col-md-3 col-form-label text-md-right",
+                                attrs: { for: "name" }
+                              },
+                              [_vm._v("Name")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-7" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.selections.name,
+                                    expression: "selections.name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  id: "name",
+                                  type: "text",
+                                  name: "name",
+                                  placeholder: "Name",
+                                  required: ""
+                                },
+                                domProps: { value: _vm.selections.name },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.selections,
+                                      "name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-8 offset-md-3" },
+                              [
+                                _c(
+                                  "b-button",
+                                  {
+                                    attrs: {
+                                      type: "submit",
+                                      variant: "primary",
+                                      disabled: _vm.selections.name.length < 3
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                            Submit\n                                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "b-button",
+                                  {
+                                    attrs: { type: "reset", variant: "danger" }
+                                  },
+                                  [_vm._v("Reset")]
+                                )
+                              ],
+                              1
+                            )
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
             ])
           ])
-        ])
-      ])
+        ],
+        1
+      )
     ],
     1
   )
