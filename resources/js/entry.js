@@ -18,18 +18,49 @@ Vue.use(Vuex);
 import App from './views/App';
 import HolidayDestination from './components/HolidayDestination';
 import Home from './components/Home';
-import StepOne from './views/form-step/StepOne';
+import StepOne from './views/form/StepOne';
+import StepTwo from './views/form/StepTwo';
+import StepThree from './views/form/StepThree';
 
 const store = new Vuex.Store({
     state: {
-        destinations: {}
+        destinations: {},
+        stepData: {
+            progressValue: 0,
+            step: 1,
+            isDisabled: true,
+        },
+        selections: {},
     },
+
+    getters: {
+        getProgressValue: state => {
+            return state.stepData.progressValue;
+        },
+
+        getStep: state => {
+            return state.stepData.step;
+        },
+
+        getIsDisabled: state => {
+            return state.stepData.isDisabled;
+        },
+    },
+
     mutations: {
         updateDestinations(state, payload) {
             const destination = payload.destination;
 
             Vue.set(state.destinations, destination.id, destination);
-        }
+        },
+
+        updateSelections(state, payload) {
+            state.selections = payload.selections;
+        },
+
+        updateStepData(state, payload) {
+            state.stepData = payload.stepData;
+        },
     }
 });
 
@@ -42,9 +73,19 @@ const router = new VueRouter({
             component: Home,
         },
         {
-            path: '/form',
+            path: '/form-step-one',
             name: 'stepOne',
             component: StepOne,
+        },
+        {
+            path: '/form-step-two',
+            name: 'stepTwo',
+            component: StepTwo,
+        },
+        {
+            path: '/form-step-three',
+            name: 'stepThree',
+            component: StepThree,
         },
         {
             path: '/holiday-destinations/:slug',
