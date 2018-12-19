@@ -1,9 +1,9 @@
 <template>
     <div>
-        <b-progress height="0.25rem" :value="this.$store.getters.getProgressValue" :max="100" class="mb-3"></b-progress>
+        <b-progress height="0.25rem" :value="this.$store.getters.progressValue" :max="100" class="mb-3"></b-progress>
 
         <!--Step Three-->
-        <b-container class="bv-example-row" v-show="this.$store.getters.getStep === 3">
+        <b-container class="bv-example-row" v-show="this.$store.getters.currentStep === 3">
             <b-container class="bv-example-row">
                 <div class="row justify-content-md-center">
                     <div class="col-lg-10">
@@ -30,7 +30,7 @@
 
                                     <div class="form-group row">
                                         <div class="col-md-8 offset-md-3">
-                                            <b-button type="submit" variant="primary" :disabled="this.$store.getters.getIsDisabled">
+                                            <b-button type="submit" variant="primary">
                                                 Submit
                                             </b-button>
                                             <b-button type="reset" variant="danger">Reset</b-button>
@@ -46,17 +46,10 @@
     </div>
 </template>
 <script>
-    //TODO
     export default {
         data() {
             return {
-                isDisabled: true,
-                step: 1,
-                progressValue: 0,
-                max: 100,
                 selections: {
-                    product: '',
-                    strain: '',
                     name: '',
                     email: '',
                 },
@@ -64,52 +57,33 @@
         },
 
         methods: {
-            onClickStepOne(event) {
-                event.preventDefault();
-
-                this.progressValue = 33;
-                this.step = 2;
-                this.isDisabled = true;
-
-                this.$store.commit({
-                    type: 'updateSelections',
-                    selections: this.selections,
-                });
-            },
-
-            onClickStepTwo(event) {
-                event.preventDefault();
-
-                this.progressValue = 66;
-                this.step = 3;
-                this.isDisabled = true;
-
-                this.$store.commit({
-                    type: 'updateSelections',
-                    selections: this.selections,
-                });
-            },
-
             onSubmit(event) {
                 event.preventDefault();
 
-                this.progressValue = 100;
+                this.$store.commit({
+                    type: 'updateSelections',
+                    selections: this.selections,
+                });
+
+                const selections = this.$store.state.selections;
 
                 axios.post('/api/leads', {
-                    product: this.selections.product,
-                    strain: this.selections.strain,
-                    name: this.selections.name,
-                    email: this.selections.email,
+                    product: selections.product,
+                    strain: selections.strain,
+                    name: selections.name,
+                    email: selections.email,
                 }).then((response) => {
-                    this.selections.product = '';
-                    this.selections.strain = '';
-                    this.selections.name = '';
-                    this.selections.email = '';
-                    this.progressValue = 0;
+                    this.$store.commit({
+                        type: 'clearSelections',
+                    });
 
                     this.$store.commit({
-                        type: 'updateSelections',
-                        selections: this.selections,
+                        type: 'updateStepData',
+                        stepData: {
+                            progressValue: 0,
+                            step: 1,
+                            isDisabled: true,
+                        },
                     });
 
                     this.$router.push('/')
@@ -121,36 +95,15 @@
             onReset(event) {
                 event.preventDefault();
 
-                this.selections.product = '';
-                this.selections.strain = '';
                 this.selections.name = '';
                 this.selections.email = '';
-                this.progressValue = 0;
 
-                this.$store.commit({
-                    type: 'updateSelections',
-                    selections: this.selections,
-                });
                 /* Trick to reset/clear native browser form validation state */
                 this.show = false;
                 this.$nextTick(() => {
                     this.show = true
                 });
-            },
-
-            onClickProduct(event) {
-                event.preventDefault();
-
-                this.selections.product = event.target.innerHTML;
-                this.isDisabled = false;
-            },
-
-            onClickStrain(event) {
-                event.preventDefault();
-
-                this.selections.strain = event.target.innerHTML;
-                this.isDisabled = false;
-            },
+            }
         }
     }
 </script>

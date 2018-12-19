@@ -6,6 +6,7 @@
                     <router-link :to="{ name: 'home' }">Home</router-link>
                 </b-nav-item>
                 <b-nav-item>
+                    <!--TODO: Refactor form to use the Vuex @input way, https://vuex.vuejs.org/guide/forms.html-->
                     <router-link :to="{ name: 'stepOne' }">Multi Page Form w/ Progress</router-link>
                 </b-nav-item>
                 <b-nav-item v-for="destination in holidayDestinations" :key="destination.id">

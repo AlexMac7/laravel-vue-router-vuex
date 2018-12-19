@@ -34,15 +34,15 @@ const store = new Vuex.Store({
     },
 
     getters: {
-        getProgressValue: state => {
+        progressValue: state => {
             return state.stepData.progressValue;
         },
 
-        getStep: state => {
+        currentStep: state => {
             return state.stepData.step;
         },
 
-        getIsDisabled: state => {
+        isDisabled: state => {
             return state.stepData.isDisabled;
         },
     },
@@ -55,12 +55,16 @@ const store = new Vuex.Store({
         },
 
         updateSelections(state, payload) {
-            state.selections = payload.selections;
+            state.selections = { ...payload.selections, ...state.selections }
         },
 
         updateStepData(state, payload) {
             state.stepData = payload.stepData;
         },
+
+        clearSelections(state) {
+            state.selections = {};
+        }
     }
 });
 
